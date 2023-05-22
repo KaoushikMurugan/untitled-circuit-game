@@ -21,7 +21,8 @@ public class GridManager : MonoBehaviour
             {
                 Vector3 spawnPos = startPos + new Vector3(j * cellWidth, 0, i * cellHeight);
                 var newObj = GameObject.Instantiate(GridCellPrefab, spawnPos, Quaternion.identity) as GameObject;
-                GridCells[i,j] = newObj;
+                newObj.transform.parent = this.gameObject.transform;
+                GridCells[i, j] = newObj;
                 var newObjMR = newObj.GetComponent<MeshRenderer>();
                 if ((i + j) % 2 == 0)
                 {
