@@ -27,6 +27,8 @@ public class DragDropElement : MonoBehaviour
             ))
             {
                 grabbedGameObject = hit.collider.gameObject;
+                var circuitElement = grabbedGameObject.GetComponent("CircuitElement") as CircuitElement;
+                circuitElement.detachFromGrid();
                 isGrabbingObject = true;
             }
         }
@@ -45,8 +47,16 @@ public class DragDropElement : MonoBehaviour
                 LayerMask.GetMask("GridCell")
             ))
             {
-                grabbedGameObject.transform.position = hit.collider.gameObject.transform.position + new Vector3(0, 1, 0);
-                isGrabbingObject = false;
+                var gridCellGameObject = hit.collider.gameObject;
+                var gridCell = gridCellGameObject.GetComponent("GridCell") as GridCell;
+                if (true)
+                {
+                    var circuitElement = grabbedGameObject.GetComponent("CircuitElement") as CircuitElement;
+                    gridCell.setCircuitElement(circuitElement);
+                    grabbedGameObject.transform.position = gridCellGameObject.transform.position + new Vector3(0, 1, 0);
+                    grabbedGameObject = null;
+                    isGrabbingObject = false;
+                }
             }
         }
     }
