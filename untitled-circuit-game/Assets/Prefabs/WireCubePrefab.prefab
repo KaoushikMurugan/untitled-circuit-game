@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7447716219998398110}
   - component: {fileID: 7447716219998398081}
   - component: {fileID: 7447716219998398080}
-  - component: {fileID: -9092887107354654953}
+  - component: {fileID: 2447466891003405429}
   m_Layer: 7
   m_Name: WireCubePrefab
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7447716219998398110
 MeshFilter:
@@ -98,7 +98,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-9092887107354654953
+--- !u!114 &2447466891003405429
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,7 +107,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7447716219998398083}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7149cfa01da9c418789c4ca5e866ef26, type: 3}
+  m_Script: {fileID: 11500000, guid: b8a4e2e60a3d24e42863c431e54cb483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridCell: {fileID: 0}

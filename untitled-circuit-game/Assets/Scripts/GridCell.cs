@@ -3,7 +3,7 @@ using UnityEngine;
 public class GridCell : MonoBehaviour
 {
     // The element that this cell is holding
-    public CircuitElement circuitElement;
+    private CircuitElement circuitElement;
     private int rowIndex;
     private int columnIndex;
 
@@ -29,10 +29,16 @@ public class GridCell : MonoBehaviour
         this.columnIndex = columnIndex;
     }
 
+    public void getIndices(out int rowIndex, out int columnIndex)
+    {
+        rowIndex = this.rowIndex;
+        columnIndex = this.columnIndex;
+    }
+
     public void setCircuitElement(CircuitElement circuitElement)
     {
         this.circuitElement = circuitElement;
-        circuitElement.gridCell = this;
+        circuitElement.attachToGrid(this);
     }
 
     public bool hasCircuitElement()
@@ -44,8 +50,16 @@ public class GridCell : MonoBehaviour
     {
         if (circuitElement != null)
         {
-            circuitElement.gridCell = null;
+            circuitElement.detachFromGrid();
             circuitElement = null;
+        }
+    }
+
+    public void onReceiveCellUpdate(int updateMask)
+    {
+        if (circuitElement != null)
+        {
+            circuitElement.onReceiveCellUpdate(updateMask);
         }
     }
 }

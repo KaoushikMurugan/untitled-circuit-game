@@ -49,4 +49,30 @@ public class GridManager : MonoBehaviour
     {
         return GridCells[rowIndex, columnIndex];
     }
+
+    public void updateAdjecentCells(int rowIndex, int columnIndex, int updateMask)
+    {
+        // ! Issue: right now 0 means unpowered and 1 means powered. However we can't tell if 
+        // ! other cells are powering the current cell or not
+        if (columnIndex < width - 1)
+        {
+            var upAdjecentCell = GridCells[rowIndex, columnIndex + 1].GetComponent("GridCell") as GridCell;
+            upAdjecentCell.onReceiveCellUpdate(updateMask & 0b1000);
+        }
+        if (columnIndex > 0)
+        {
+            var downAdjecentCell = GridCells[rowIndex, columnIndex - 1].GetComponent("GridCell") as GridCell;
+            downAdjecentCell.onReceiveCellUpdate(updateMask & 0b0100);
+        }
+        if (rowIndex > 0)
+        {
+            var leftAdjecentCell = GridCells[rowIndex - 1, columnIndex].GetComponent("GridCell") as GridCell;
+            leftAdjecentCell.onReceiveCellUpdate(updateMask & 0b0010);
+        }
+        if (rowIndex < height - 1)
+        {
+            var rightAdjecentCell = GridCells[rowIndex + 1, columnIndex].GetComponent("GridCell") as GridCell;
+            rightAdjecentCell.onReceiveCellUpdate(updateMask & 0b0001);
+        }
+    }
 }
