@@ -28,7 +28,7 @@ public class DragDropElement : MonoBehaviour
             {
                 grabbedGameObject = hit.collider.gameObject;
                 var circuitElement = grabbedGameObject.GetComponent("CircuitElement") as CircuitElement;
-                circuitElement.detachFromGrid();
+                circuitElement.DetachFromGrid();
                 isGrabbingObject = true;
             }
         }
@@ -52,7 +52,7 @@ public class DragDropElement : MonoBehaviour
                 if (true)
                 {
                     var circuitElement = grabbedGameObject.GetComponent("CircuitElement") as CircuitElement;
-                    gridCell.setCircuitElement(circuitElement);
+                    gridCell.SetCircuitElement(circuitElement);
                     grabbedGameObject.transform.position = gridCellGameObject.transform.position + new Vector3(0, 1, 0);
                     grabbedGameObject = null;
                     isGrabbingObject = false;

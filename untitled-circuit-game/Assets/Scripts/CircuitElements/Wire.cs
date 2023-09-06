@@ -2,18 +2,29 @@ using UnityEngine;
 
 public class Wire : CircuitElement
 {
-    override public void onFallingEdge(int updateMask)
+    // 0bABCD
+    // A - up
+    // B - down
+    // C - left
+    // D - right
+    public int wireConnections = 0b0000;
+    public bool powerState = false;
+    public override int OnTickCellOutput()
     {
-        // Unpower adjecent cells
+        powerState = nextTickUpdateMask != 0b0000;
+        UpdateTexture();
+        return powerState ? 0b1111 : 0b0000;
     }
 
-    override public void onRisingEdge(int updateMask)
+    public void UpdateTexture()
     {
-        // power adjecent cells
-    }
-
-    private void updateState(bool isPowered, int connection)
-    {
-        elementIsPowered = isPowered;
+        if (powerState)
+        {
+            // TODO
+        }
+        else
+        {
+            // TODO
+        }
     }
 }

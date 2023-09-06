@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class GridCell : MonoBehaviour
@@ -19,47 +20,47 @@ public class GridCell : MonoBehaviour
         ))
         {
             var circuitElement = hit.collider.gameObject.GetComponent("CircuitElement") as CircuitElement;
-            setCircuitElement(circuitElement);
+            SetCircuitElement(circuitElement);
         }
     }
 
-    public void setIndices(int rowIndex, int columnIndex)
+    public void SetIndices(int rowIndex, int columnIndex)
     {
         this.rowIndex = rowIndex;
         this.columnIndex = columnIndex;
     }
 
-    public void getIndices(out int rowIndex, out int columnIndex)
+    public void GetIndices(out int rowIndex, out int columnIndex)
     {
         rowIndex = this.rowIndex;
         columnIndex = this.columnIndex;
     }
 
-    public void setCircuitElement(CircuitElement circuitElement)
+    public void SetCircuitElement(CircuitElement circuitElement)
     {
         this.circuitElement = circuitElement;
-        circuitElement.attachToGrid(this);
+        circuitElement.AttachToGrid(this);
     }
 
-    public bool hasCircuitElement()
+    public bool HasCircuitElement()
     {
         return circuitElement != null;
     }
 
-    public void removeCircuitElement()
+    public void RemoveCircuitElement()
     {
         if (circuitElement != null)
         {
-            circuitElement.detachFromGrid();
+            circuitElement.DetachFromGrid();
             circuitElement = null;
         }
     }
 
-    public void onReceiveCellUpdate(int updateMask)
+    public void OnReceiveCellUpdate(bool powerState, int receivingFrom)
     {
         if (circuitElement != null)
         {
-            circuitElement.onReceiveCellUpdate(updateMask);
+            circuitElement.OnReceiveCellUpdate(powerState, receivingFrom);
         }
     }
 }
